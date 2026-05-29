@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featured = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Projects — 77652189">
+  <section class="mb-16">
+    <h1 class="text-3xl font-bold text-slate-900 mb-4">Hi 👋</h1>
+    <div class="text-slate-600 leading-relaxed space-y-1">
+      <p>热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。</p>
+      <p class="text-slate-400 text-sm">
+        Passionate about solving real-world problems with AI — NLP, data science, and agents.
+      </p>
+    </div>
+
+    <div class="flex gap-3 mt-6">
+      <a
+        href="https://github.com/77652189"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 text-sm bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+      >
+        GitHub ↗
+      </a>
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 text-sm border border-slate-300 text-slate-700 px-4 py-2 rounded-lg hover:border-indigo-300 hover:text-indigo-600 transition-colors"
+      >
+        所有项目
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-semibold text-slate-900">精选项目</h2>
+      <a href="/projects" class="text-sm text-indigo-600 hover:text-indigo-800 transition-colors">
+        全部 {allProjects.length} 个 →
+      </a>
+    </div>
+    <div class="flex flex-col gap-4">
+      {featured.map(project => (
+        <ProjectCard
+          title={project.data.title}
+          titleZh={project.data.titleZh}
+          description={project.data.description}
+          descriptionZh={project.data.descriptionZh}
+          tags={project.data.tags}
+          stars={project.data.stars}
+          slug={project.slug}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>
