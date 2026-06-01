@@ -4,7 +4,11 @@ import typography from '@tailwindcss/typography';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+      },
+    },
   },
   plugins: [typography],
 };

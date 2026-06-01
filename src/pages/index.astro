@@ -10,41 +10,58 @@ const featured = allProjects
 ---
 
 <Layout title="Projects — 77652189">
-  <section class="mb-16">
-    <h1 class="text-3xl font-bold text-slate-900 mb-4">Hi 👋</h1>
-    <div class="text-slate-600 leading-relaxed space-y-1">
-      <p>热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。</p>
-      <p class="text-slate-400 text-sm">
+
+  <!-- Hero with dot-grid background -->
+  <section class="relative -mx-6 px-6 pt-12 pb-14 mb-16 overflow-hidden">
+    <!-- Dot grid -->
+    <div
+      class="absolute inset-0 opacity-30"
+      style="background-image: radial-gradient(circle at 1px 1px, rgb(71 85 105) 1px, transparent 0); background-size: 28px 28px;"
+    ></div>
+    <!-- Fade bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-950 to-transparent"></div>
+
+    <div class="relative">
+      <p class="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-4">Portfolio</p>
+      <h1 class="text-4xl font-bold tracking-tight leading-tight mb-4">
+        <span class="text-white">Hi, 我是 </span>
+        <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">77652189</span>
+      </h1>
+      <p class="text-slate-400 leading-relaxed max-w-lg">
+        热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。
+      </p>
+      <p class="text-slate-600 text-sm mt-1">
         Passionate about solving real-world problems with AI — NLP, data science, and agents.
       </p>
-    </div>
 
-    <div class="flex gap-3 mt-6">
-      <a
-        href="https://github.com/77652189"
-        target="_blank"
-        rel="noopener"
-        class="inline-flex items-center gap-2 text-sm bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-      >
-        GitHub ↗
-      </a>
-      <a
-        href="/projects"
-        class="inline-flex items-center gap-2 text-sm border border-slate-300 text-slate-700 px-4 py-2 rounded-lg hover:border-indigo-300 hover:text-indigo-600 transition-colors"
-      >
-        所有项目
-      </a>
+      <div class="flex gap-3 mt-8">
+        <a
+          href="https://github.com/77652189"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 text-sm bg-white text-slate-950 px-4 py-2 rounded-lg font-medium hover:bg-slate-100 transition-colors"
+        >GitHub ↗</a>
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 text-sm border border-slate-700 text-slate-400 px-4 py-2 rounded-lg hover:border-slate-500 hover:text-white transition-colors"
+        >所有项目</a>
+      </div>
     </div>
   </section>
 
+  <!-- Featured projects -->
   <section>
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-lg font-semibold text-slate-900">精选项目</h2>
-      <a href="/projects" class="text-sm text-indigo-600 hover:text-indigo-800 transition-colors">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-slate-500 uppercase tracking-widest">精选项目</span>
+        <div class="w-12 h-px bg-slate-800"></div>
+      </div>
+      <a href="/projects" class="text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-colors">
         全部 {allProjects.length} 个 →
       </a>
     </div>
-    <div class="flex flex-col gap-4">
+
+    <div class="flex flex-col gap-3">
       {featured.map(project => (
         <ProjectCard
           title={project.data.title}
@@ -58,4 +75,5 @@ const featured = allProjects
       ))}
     </div>
   </section>
+
 </Layout>
