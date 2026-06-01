@@ -9,46 +9,45 @@ const featured = allProjects
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Layout title="Projects — 77652189">
+<Layout title="77652189 — AI Agent Developer">
 
-  <!-- Hero：卡片式，边距和字号响应式 -->
-  <section class="relative rounded-xl sm:rounded-2xl px-6 sm:px-10 pt-10 sm:pt-14 pb-12 sm:pb-16 mb-10 sm:mb-14 overflow-hidden border border-slate-200 dark:border-slate-800">
-    <div class="absolute inset-0 dot-grid opacity-60"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-slate-950 to-transparent"></div>
+  <!-- Hero：无装饰，纯字排版 -->
+  <section class="pt-10 sm:pt-16 pb-14 sm:pb-20 mb-4">
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">
+      Portfolio
+    </p>
 
-    <div class="relative">
-      <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-3 sm:mb-4">Portfolio</p>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-slate-900 dark:text-white">
+      77652189
+    </h1>
 
-      <!-- 标题：小屏 3xl，大屏 4xl -->
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-3 sm:mb-4">
-        <span class="text-slate-900 dark:text-white">Hi, 我是 </span>
-        <span class="bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
-          77652189
-        </span>
-      </h1>
+    <p class="font-mono text-sm sm:text-base text-slate-400 dark:text-slate-500 mb-6">
+      AI Agent Developer&nbsp;&nbsp;·&nbsp;&nbsp;AI 智能体工程师
+    </p>
 
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base max-w-xl">
-        热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。
-      </p>
-      <p class="text-slate-400 dark:text-slate-600 text-xs sm:text-sm mt-1">
-        Passionate about solving real-world problems with AI — NLP, data science, and agents.
-      </p>
+    <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl text-sm sm:text-base mb-1">
+      热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。
+    </p>
+    <p class="text-slate-400 dark:text-slate-600 text-xs sm:text-sm mb-8">
+      Passionate about solving real-world problems with AI — NLP, data science, and agents.
+    </p>
 
-      <!-- 按钮：44px 高度满足触摸规范 -->
-      <div class="flex flex-wrap gap-3 mt-6 sm:mt-8">
-        <a
-          href="https://github.com/77652189"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]"
-        >GitHub ↗</a>
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white transition-colors min-h-[44px]"
-        >所有项目</a>
-      </div>
+    <div class="flex flex-wrap gap-3">
+      <a
+        href="https://github.com/77652189"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]"
+      >GitHub ↗</a>
+      <a
+        href="mailto:gao.na@northeastern.edu"
+        class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white transition-colors min-h-[44px]"
+      >gao.na@northeastern.edu</a>
     </div>
   </section>
+
+  <!-- 分隔线 -->
+  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-14"></div>
 
   <!-- 精选项目 -->
   <section>
@@ -62,7 +61,6 @@ const featured = allProjects
       </a>
     </div>
 
-    <!-- 小屏 1 列，中屏 2 列，大屏 3 列 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
       {featured.map(project => (
         <ProjectCard
@@ -79,13 +77,3 @@ const featured = allProjects
   </section>
 
 </Layout>
-
-<style>
-  .dot-grid {
-    background-image: radial-gradient(circle at 1px 1px, rgb(203 213 225) 1px, transparent 0);
-    background-size: 28px 28px;
-  }
-  :global(.dark) .dot-grid {
-    background-image: radial-gradient(circle at 1px 1px, rgb(51 65 85) 1px, transparent 0);
-  }
-</style>
