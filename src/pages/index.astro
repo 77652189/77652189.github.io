@@ -7,15 +7,19 @@ const allProjects = await getCollection('projects');
 const featured = allProjects
   .filter(p => p.data.featured)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const techStack = [
+  { label: 'Agent & AI', items: ['LangGraph', 'LangChain', 'RAG', 'Multi-Agent', 'FAISS'] },
+  { label: 'ML', items: ['PyTorch', 'scikit-learn', 'XGBoost'] },
+  { label: 'Engineering', items: ['Python', 'Java', 'Spring Boot', 'MySQL'] },
+];
 ---
 
 <Layout title="Nan — AI Agent Developer">
 
-  <!-- Hero：无装饰，纯字排版 -->
-  <section class="pt-10 sm:pt-16 pb-14 sm:pb-20 mb-4">
-    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">
-      Portfolio
-    </p>
+  <!-- Hero -->
+  <section class="pt-10 sm:pt-16 pb-12 sm:pb-16 mb-4">
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
 
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-slate-900 dark:text-white">
       Nan
@@ -26,10 +30,10 @@ const featured = allProjects
     </p>
 
     <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl text-sm sm:text-base mb-1">
-      热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。
+      热衷于构建以 LangGraph 为核心的 AI 智能体系统，专注于 RAG、多 Agent 架构与 LLM 落地应用。
     </p>
     <p class="text-slate-400 dark:text-slate-600 text-xs sm:text-sm mb-8">
-      Passionate about solving real-world problems with AI — NLP, data science, and agents.
+      Building LangGraph-based AI agent systems — RAG, multi-agent architecture, and LLM applications.
     </p>
 
     <div class="flex flex-wrap gap-3">
@@ -46,8 +50,72 @@ const featured = allProjects
     </div>
   </section>
 
-  <!-- 分隔线 -->
-  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-14"></div>
+  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-12"></div>
+
+  <!-- About：两列，左侧经历，右侧技术栈 -->
+  <section class="mb-10 sm:mb-14">
+    <div class="flex items-center gap-3 mb-7">
+      <span class="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest">关于</span>
+      <div class="w-10 h-px bg-slate-200 dark:bg-slate-800"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 sm:gap-10">
+
+      <!-- 左：教育 + 实习 -->
+      <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <div>
+          <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Education</p>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Northeastern University</p>
+              <p class="text-xs text-slate-500 dark:text-slate-500">MS · Information Systems</p>
+              <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">GPA 4.0 &nbsp;·&nbsp; Expected 2027</p>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Central South University</p>
+              <p class="text-xs text-slate-500 dark:text-slate-500">BS · Software Engineering</p>
+              <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">2023</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Experience</p>
+          <div>
+            <p class="text-sm font-medium text-slate-900 dark:text-slate-100">AI Agent Intern</p>
+            <p class="text-xs text-slate-500 dark:text-slate-500">Biotech Company · Suzhou</p>
+            <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">Apr 2026 – Present</p>
+            <p class="text-xs text-slate-500 dark:text-slate-500 mt-2 leading-relaxed">
+              基于 LangGraph 构建发酵过程智能分析 Agent，结合 RAG 检索 SOP 自动生成诊断报告；参与上海交通大学产学研合作项目。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右：Tech Stack -->
+      <div class="md:col-span-2">
+        <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Tech Stack</p>
+        <div class="space-y-3">
+          {techStack.map(group => (
+            <div>
+              <p class="text-xs text-slate-400 dark:text-slate-600 mb-1.5">{group.label}</p>
+              <div class="flex flex-wrap gap-1.5">
+                {group.items.map(tech => (
+                  <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-12"></div>
 
   <!-- 精选项目 -->
   <section>

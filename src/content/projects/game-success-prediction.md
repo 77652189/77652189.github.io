@@ -1,25 +1,30 @@
 ---
 title: GameSuccessPrediction
-titleZh: 游戏成功预测
-description: Data science analysis predicting video game commercial success
-descriptionZh: 用机器学习预测视频游戏商业成功的数据科学项目
+titleZh: Steam 独立游戏成功预测模型
+description: ML model predicting indie game success with 97.9% accuracy — and a paradox
+descriptionZh: 分析 1,189 款 Steam 游戏，预测准确率 97.9%，发现"Twitch 悖论"
 language: Python
-tags: [Data Science, Python, Machine Learning, EDA]
+tags: [Python, XGBoost, scikit-learn, Data Science, ML]
 github: https://github.com/77652189/GameSuccessPrediction
 stars: 0
-date: 2026-03-16
+date: 2025-11-01
 featured: false
 ---
 
-通过分析历史游戏销售数据，建立预测模型判断一款游戏是否能取得商业成功。
+构建机器学习模型，对 1,189 款 Steam 游戏的 20+ 项特征进行分析，预测独立游戏市场成功率，准确率达 **97.9%**。
 
-## 分析内容
+指导教授：Pramod Gupta
 
-- 数据清洗与探索性分析（EDA）
-- 特征工程：类型、平台、评分、发行商等
-- 多模型对比：逻辑回归、随机森林、XGBoost
-- 结果解释与特征重要性分析
+## 主要发现
 
-## 技术栈
+**"Twitch 悖论"**：通过统计分析发现，过度直播曝光反而对游戏销量产生负面影响——与直觉相悖的反常规律。
 
-Python · pandas · scikit-learn · Jupyter Notebook · matplotlib
+## 方法
+
+- 多算法横向对比：Logistic Regression、Random Forest、XGBoost
+- 超参数调优持续提升模型性能
+- 端到端数据科学全流程：特征工程 → 建模 → 评估 → 解释
+
+## Tech Stack
+
+Python · XGBoost · scikit-learn · pandas · matplotlib

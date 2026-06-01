@@ -1,28 +1,24 @@
 ---
 title: SortPaper
-titleZh: 论文智能整理
-description: Read the Paper, Sort the Paper, Generate new Paper
-descriptionZh: 读取、整理并综合生成学术论文的 AI 工作流
+titleZh: 学术论文解析与质检系统
+description: LangGraph pipeline for PDF parsing, QC, and semantic indexing
+descriptionZh: 基于 LangGraph 的论文端到端解析、质检与语义入库工作流
 language: Python
-tags: [AI, NLP, Python, 文献管理]
+tags: [LangGraph, RAG, FAISS, LLM, Python]
 github: https://github.com/77652189/SortPaper
 stars: 1
-date: 2026-05-29
+date: 2026-04-01
 featured: true
 ---
 
-SortPaper 是一个面向科研人员的自动化文献处理工具，将读文献、整理文献、生成综述三个步骤串联成一条完整的 AI 工作流。
+基于 LangGraph 构建的多节点流水线，将学术论文的 PDF 解析、内容质检、语义入库串联为端到端自动化工作流。
 
-## 背景
+## 核心模块
 
-科研人员每天面对大量文献，手动整理耗时耗力。SortPaper 通过 AI 自动化这一过程，让研究者专注于思考而非整理。
+- **解析层** — 自动提取 PDF 结构化内容，识别标题、摘要、章节
+- **质检层（LLM-as-Judge）** — 按完整性、可读性、内容深度三个维度对解析结果自动评分
+- **检索层** — 使用 DashScope Embedding API + FAISS 构建语义索引，支持后续 RAG 问答
 
-## 功能 / Features
+## Tech Stack
 
-- **Read** — 自动解析 PDF，提取标题、摘要、关键贡献
-- **Sort** — 按主题和语义相似度对文献分类聚合
-- **Generate** — 基于整理结果生成结构化文献综述草稿
-
-## 技术栈
-
-Python · LLM · PDF parsing · Semantic similarity
+Python · LangGraph · FAISS · DashScope Embedding API · LLM-as-Judge
