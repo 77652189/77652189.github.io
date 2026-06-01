@@ -12,39 +12,42 @@ interface Props {
 const { title, titleZh, description, descriptionZh, tags, stars, slug } = Astro.props;
 ---
 
-<a href={`/projects/${slug}`} class="block group">
-  <div class="bg-white dark:bg-slate-900
+<a href={`/projects/${slug}`} class="block group min-h-[44px]">
+  <div class="h-full bg-white dark:bg-slate-900
     border border-slate-200 dark:border-slate-800
-    rounded-xl p-6
+    rounded-xl p-5 sm:p-6
     hover:border-indigo-300 dark:hover:border-slate-600
     hover:-translate-y-0.5
     hover:shadow-lg hover:shadow-slate-200/80 dark:hover:shadow-black/40
     transition-all duration-200 ease-out">
 
-    <div class="flex items-start justify-between mb-3">
-      <div>
-        <h3 class="font-mono font-medium text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+    <div class="flex items-start justify-between mb-2 sm:mb-3">
+      <div class="flex-1 min-w-0 pr-2">
+        <h3 class="font-mono font-medium text-sm sm:text-base text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
           {title}
         </h3>
-        <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">{titleZh}</p>
+        <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5 truncate">{titleZh}</p>
       </div>
       {stars > 0 && (
-        <span class="text-xs text-amber-500 dark:text-amber-400 flex items-center gap-1 ml-4 shrink-0 font-mono">
+        <span class="text-xs text-amber-500 dark:text-amber-400 flex items-center gap-0.5 shrink-0 font-mono">
           ★ {stars}
         </span>
       )}
     </div>
 
-    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{descriptionZh}</p>
-    <p class="text-xs text-slate-400 dark:text-slate-600 leading-relaxed mt-0.5">{description}</p>
+    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{descriptionZh}</p>
+    <p class="text-xs text-slate-400 dark:text-slate-600 leading-relaxed mt-0.5 line-clamp-1">{description}</p>
 
     {tags.length > 0 && (
-      <div class="flex flex-wrap gap-1.5 mt-4">
-        {tags.map(tag => (
+      <div class="flex flex-wrap gap-1.5 mt-3 sm:mt-4">
+        {tags.slice(0, 3).map(tag => (
           <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700/60 px-2 py-0.5 rounded">
             {tag}
           </span>
         ))}
+        {tags.length > 3 && (
+          <span class="text-xs font-mono text-slate-400 dark:text-slate-600">+{tags.length - 3}</span>
+        )}
       </div>
     )}
   </div>
