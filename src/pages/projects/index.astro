@@ -24,7 +24,8 @@ const allTags = [...new Set(allProjects.flatMap(p => p.data.tags))].sort();
     ))}
   </div>
 
-  <div class="flex flex-col gap-3">
+  <!-- 两列网格 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {sorted.map(project => (
       <ProjectCard
         title={project.data.title}

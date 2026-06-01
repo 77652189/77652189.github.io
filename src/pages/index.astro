@@ -11,10 +11,12 @@ const featured = allProjects
 
 <Layout title="Projects — 77652189">
 
-  <!-- Hero with dot-grid，明暗双模式 -->
-  <section class="relative -mx-6 px-6 pt-12 pb-14 mb-16 overflow-hidden">
-    <div class="absolute inset-0 opacity-70 dot-grid"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent"></div>
+  <!-- Hero -->
+  <section class="relative rounded-2xl px-10 pt-14 pb-16 mb-14 overflow-hidden border border-slate-200 dark:border-slate-800">
+    <!-- Dot grid background -->
+    <div class="absolute inset-0 dot-grid opacity-60"></div>
+    <!-- Fade to background at bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-slate-950 to-transparent"></div>
 
     <div class="relative">
       <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-4">Portfolio</p>
@@ -24,7 +26,7 @@ const featured = allProjects
           77652189
         </span>
       </h1>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg">
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
         热衷于用 AI 解决实际问题，专注于 NLP、数据科学与 AI Agent 方向。
       </p>
       <p class="text-slate-400 dark:text-slate-600 text-sm mt-1">
@@ -46,7 +48,7 @@ const featured = allProjects
     </div>
   </section>
 
-  <!-- Featured projects -->
+  <!-- Featured projects — 两列网格 -->
   <section>
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center gap-3">
@@ -58,7 +60,7 @@ const featured = allProjects
       </a>
     </div>
 
-    <div class="flex flex-col gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {featured.map(project => (
         <ProjectCard
           title={project.data.title}
@@ -76,7 +78,6 @@ const featured = allProjects
 </Layout>
 
 <style>
-  /* 点阵背景，明暗双模式 */
   .dot-grid {
     background-image: radial-gradient(circle at 1px 1px, rgb(203 213 225) 1px, transparent 0);
     background-size: 28px 28px;
