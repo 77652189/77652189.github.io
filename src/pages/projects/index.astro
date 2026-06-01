@@ -11,15 +11,14 @@ const allTags = [...new Set(allProjects.flatMap(p => p.data.tags))].sort();
 <Layout title="所有项目 — 77652189">
 
   <div class="mb-10">
-    <p class="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-2">All Projects</p>
-    <h1 class="text-2xl font-bold text-white">所有项目</h1>
-    <p class="font-mono text-xs text-slate-600 mt-1">{allProjects.length} projects</p>
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-2">All Projects</p>
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">所有项目</h1>
+    <p class="font-mono text-xs text-slate-400 dark:text-slate-600 mt-1">{allProjects.length} projects</p>
   </div>
 
-  <!-- Tag cloud -->
   <div class="flex flex-wrap gap-2 mb-8">
     {allTags.map(tag => (
-      <span class="text-xs font-mono bg-slate-900 border border-slate-800 text-slate-500 px-3 py-1 rounded-full">
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 px-3 py-1 rounded-full">
         {tag}
       </span>
     ))}

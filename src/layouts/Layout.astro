@@ -19,29 +19,60 @@ const currentPath = Astro.url.pathname;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <!-- 防止切换主题时的闪烁 -->
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-950 text-slate-300 min-h-screen antialiased">
 
-    <nav class="border-b border-slate-800 bg-slate-950/90 backdrop-blur-sm sticky top-0 z-10">
+  <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-300 min-h-screen antialiased transition-colors duration-200">
+
+    <nav class="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm sticky top-0 z-10">
       <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" class="font-mono text-sm font-medium text-white hover:text-indigo-400 transition-colors">
+        <a href="/" class="font-mono text-sm font-medium text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
           77652189
         </a>
-        <div class="flex gap-6 text-sm">
+        <div class="flex items-center gap-5 text-sm">
           <a
             href="/"
-            class:list={['transition-colors', currentPath === '/' ? 'text-white' : 'text-slate-500 hover:text-white']}
+            class:list={['transition-colors', currentPath === '/'
+              ? 'text-slate-900 dark:text-white font-medium'
+              : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >首页</a>
           <a
             href="/projects"
-            class:list={['transition-colors', currentPath.startsWith('/projects') ? 'text-white' : 'text-slate-500 hover:text-white']}
+            class:list={['transition-colors', currentPath.startsWith('/projects')
+              ? 'text-slate-900 dark:text-white font-medium'
+              : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >项目</a>
           <a
             href="https://github.com/77652189"
             target="_blank"
             rel="noopener"
-            class="text-slate-500 hover:text-white transition-colors"
+            class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
           >GitHub ↗</a>
+
+          <!-- 明暗切换按钮 -->
+          <button
+            id="theme-toggle"
+            aria-label="切换主题"
+            class="text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200 transition-colors p-1 rounded-md"
+          >
+            <!-- 月亮：浅色模式下显示，点击切换到深色 -->
+            <svg class="w-4 h-4 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <!-- 太阳：深色模式下显示，点击切换到浅色 -->
+            <svg class="w-4 h-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </button>
         </div>
       </div>
     </nav>
@@ -50,13 +81,20 @@ const currentPath = Astro.url.pathname;
       <slot />
     </main>
 
-    <footer class="border-t border-slate-800 mt-20">
-      <div class="max-w-3xl mx-auto px-6 py-8 text-center text-xs font-mono text-slate-700">
-        Built with <a href="https://astro.build" class="hover:text-indigo-400 transition-colors">Astro</a>
+    <footer class="border-t border-slate-200 dark:border-slate-800 mt-20">
+      <div class="max-w-3xl mx-auto px-6 py-8 text-center text-xs font-mono text-slate-400 dark:text-slate-700">
+        Built with <a href="https://astro.build" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Astro</a>
         &nbsp;·&nbsp;
-        <a href="https://github.com/77652189" class="hover:text-indigo-400 transition-colors">GitHub</a>
+        <a href="https://github.com/77652189" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub</a>
       </div>
     </footer>
+
+    <script is:inline>
+      document.getElementById('theme-toggle')?.addEventListener('click', function () {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    </script>
 
   </body>
 </html>
