@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tiers = [
+  {
+    name: '社区版',
+    nameEn: 'Community',
+    price: '免费',
+    priceEn: 'Free forever',
+    color: '16,185,129',   // emerald
+    badge: '最受欢迎',
+    badgeEn: 'Most Popular',
+    cta: '⭐ 获取社区版',
+    ctaHref: 'https://github.com/77652189/77652189.github.io',
+    ctaTarget: '_blank',
+    highlight: true,
+    features: [
+      { text: '零成本接入，无需信用卡', sub: 'No credit card required' },
+      { text: '即时生效，立竿见影', sub: 'Instant delivery' },
+      { text: '为作者提供可见度', sub: 'Increases project visibility' },
+      { text: '社区荣誉（无形）', sub: 'Intangible community badge' },
+      { text: '好人有好报', sub: 'Statistically unverified' },
+    ],
+    note: '即 GitHub Star × 1',
+  },
+  {
+    name: '咖啡版',
+    nameEn: 'Coffee',
+    price: '¥20',
+    priceEn: 'one-time',
+    color: '245,158,11',   // amber
+    badge: null,
+    cta: '☕ 请我喝杯咖啡',
+    ctaHref: 'https://ko-fi.com/',   // 替换为你的 Ko-fi 链接
+    ctaTarget: '_blank',
+    highlight: false,
+    features: [
+      { text: '支持凌晨的灵感调研', sub: 'Fund late-night research' },
+      { text: '收到手写感谢邮件', sub: 'Handwritten thank-you email' },
+      { text: '内心的满足感', sub: 'Inner satisfaction included' },
+      { text: '包含社区版全部权益', sub: 'Includes Community tier' },
+    ],
+    note: 'via Ko-fi',
+  },
+  {
+    name: '支持者',
+    nameEn: 'Supporter',
+    price: '随心',
+    priceEn: 'pay what you want',
+    color: '99,102,241',   // indigo
+    badge: null,
+    cta: '🚀 成为支持者',
+    ctaHref: 'https://ko-fi.com/',   // 替换为你的 Ko-fi 链接
+    ctaTarget: '_blank',
+    highlight: false,
+    features: [
+      { text: '留言板感谢名单', sub: 'Listed in guestbook thanks' },
+      { text: '项目页致谢（可选）', sub: 'Optional project credit' },
+      { text: '随时欢迎聊合作', sub: 'Open to collaboration chat' },
+      { text: '包含以上所有权益', sub: 'Includes all tiers' },
+    ],
+    note: 'via Ko-fi',
+  },
+];
+---
+
+<Layout title="赞助 — 知行合一" description="支持 Nan 继续构建有趣的东西。有个免费选项，真的。">
+
+  <section class="pt-10 sm:pt-14 pb-10">
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-4">Sponsor</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">赞助</h1>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mb-1">
+      支持我继续构建有趣的 AI 东西。有个免费选项，而且<em>真的</em>有用。
+    </p>
+    <p class="text-slate-400 dark:text-slate-600 text-xs">
+      Support my work building AI things. There's a free option. It actually helps.
+    </p>
+  </section>
+
+  <div class="h-px mb-10 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
+
+  <!-- 定价卡片 -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-14">
+    {tiers.map(tier => (
+      <div class:list={[
+        'relative flex flex-col rounded-2xl overflow-hidden border transition-all duration-300',
+        'hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-black/40',
+        tier.highlight
+          ? 'border-emerald-300 dark:border-emerald-700 shadow-lg shadow-emerald-100 dark:shadow-emerald-950/30'
+          : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+      ]}>
+
+        <!-- 渐变封面头 -->
+        <div
+          class="card-cover relative h-24 overflow-hidden shrink-0"
+          style={`--rgb:${tier.color}`}
+        >
+          <div class="absolute inset-0 opacity-40"
+            style={`background-image:radial-gradient(circle at 1px 1px,rgba(${tier.color},0.6) 1px,transparent 0);background-size:16px 16px`}></div>
+          <div class="absolute -bottom-6 -right-6 w-20 h-20 rounded-full blur-2xl"
+            style={`background:rgba(${tier.color},0.4)`}></div>
+
+          <div class="absolute bottom-3 left-4">
+            <p class="text-2xl font-bold text-white drop-shadow-sm">{tier.price}</p>
+            <p class="text-xs text-white/70 font-mono">{tier.priceEn}</p>
+          </div>
+
+          {tier.badge && (
+            <div class="absolute top-3 right-3 text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30">
+              {tier.badge}
+            </div>
+          )}
+        </div>
+
+        <!-- 内容 -->
+        <div class:list={[
+          'flex flex-col flex-1 p-5',
+          'bg-white dark:bg-slate-900'
+        ]}>
+          <div class="mb-4">
+            <p class="font-bold text-slate-900 dark:text-slate-100">{tier.name}</p>
+            <p class="text-xs font-mono text-slate-400 dark:text-slate-600">{tier.nameEn}</p>
+          </div>
+
+          <ul class="space-y-2.5 flex-1 mb-6">
+            {tier.features.map(f => (
+              <li class="flex items-start gap-2">
+                <span class="text-xs mt-0.5" style={`color:rgba(${tier.color},0.8)`}>✓</span>
+                <div>
+                  <p class="text-xs text-slate-700 dark:text-slate-300">{f.text}</p>
+                  <p class="text-xs text-slate-400 dark:text-slate-600">{f.sub}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <div>
+            <a
+              href={tier.ctaHref}
+              target={tier.ctaTarget}
+              rel="noopener"
+              class:list={[
+                'block w-full text-center text-sm font-medium py-2.5 rounded-xl transition-all duration-200',
+                tier.highlight
+                  ? 'text-white hover:opacity-90'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+              ]}
+              style={tier.highlight ? `background:rgba(${tier.color},0.85)` : ''}
+            >{tier.cta}</a>
+            <p class="text-center text-xs text-slate-400 dark:text-slate-600 mt-2 font-mono">{tier.note}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- 底部小字 -->
+  <p class="text-center text-xs text-slate-400 dark:text-slate-600 font-mono">
+    所有赞助将用于购买咖啡、续费域名，以及支付 API 调用费用。<br />
+    <span class="text-slate-300 dark:text-slate-700">All proceeds fund coffee, domain renewal, and API bills.</span>
+  </p>
+
+</Layout>
+
+<style>
+  .card-cover {
+    background: linear-gradient(135deg, rgba(var(--rgb), 0.18) 0%, rgba(var(--rgb), 0.04) 100%);
+  }
+  :global(.dark) .card-cover {
+    background: linear-gradient(135deg, rgba(var(--rgb), 0.25) 0%, rgba(var(--rgb), 0.06) 100%);
+  }
+</style>
