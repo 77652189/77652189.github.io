@@ -46,21 +46,21 @@ const currentPath = Astro.url.pathname;
             class:list={['hidden sm:inline transition-colors', currentPath === '/'
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
-          >首页</a>
+          >首页<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Home</span></a>
 
           <a
             href="/projects"
             class:list={['transition-colors', currentPath.startsWith('/projects')
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
-          >项目</a>
+          >项目<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Projects</span></a>
 
           <a
             href="/Nan_Resume.pdf"
             target="_blank"
             rel="noopener"
             class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-          >Resume</a>
+          >简历<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Resume</span></a>
 
           <a
             href="https://github.com/77652189"
