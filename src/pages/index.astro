@@ -9,88 +9,126 @@ const featured = allProjects
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const techStack = [
-  { label: 'Agent & AI', items: ['LangGraph', 'LangChain', 'RAG', 'Multi-Agent', 'FAISS'] },
-  { label: 'ML', items: ['PyTorch', 'scikit-learn', 'XGBoost'] },
-  { label: 'Engineering', items: ['Python', 'Java', 'Spring Boot', 'MySQL'] },
+  {
+    label: 'Agent & AI',
+    tagClass: 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900',
+    items: ['LangGraph', 'LangChain', 'RAG', 'Multi-Agent', 'FAISS'],
+  },
+  {
+    label: 'ML',
+    tagClass: 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-900',
+    items: ['PyTorch', 'scikit-learn', 'XGBoost'],
+  },
+  {
+    label: 'Engineering',
+    tagClass: 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700',
+    items: ['Python', 'Java', 'Spring Boot', 'MySQL'],
+  },
 ];
 ---
 
 <Layout title="Nan — AI Agent Developer">
 
-  <!-- Hero -->
-  <section class="pt-10 sm:pt-16 pb-8 sm:pb-10 mb-4 relative">
-    <!-- 背景光晕 -->
-    <div class="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-20 dark:opacity-10 pointer-events-none"
+  <!-- ① Hero -->
+  <section class="pt-10 sm:pt-16 pb-10 sm:pb-14 mb-2 relative overflow-hidden">
+    <!-- 双色光晕背景 -->
+    <div class="absolute -top-16 -left-16 w-80 h-80 rounded-full blur-3xl opacity-25 dark:opacity-15 pointer-events-none"
       style="background:radial-gradient(circle,rgb(99,102,241),transparent 70%)"></div>
-    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
+    <div class="absolute top-0 left-48 w-48 h-48 rounded-full blur-3xl opacity-10 dark:opacity-8 pointer-events-none"
+      style="background:radial-gradient(circle,rgb(139,92,246),transparent 70%)"></div>
 
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-slate-900 dark:text-white">
-      Nan
-    </h1>
+    <!-- 极淡点阵 -->
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+      style="background-image:radial-gradient(circle at 1px 1px,rgb(99,102,241) 1px,transparent 0);background-size:28px 28px"></div>
 
-    <!-- 状态标签 -->
-    <div class="inline-flex items-center gap-1.5 text-xs font-mono bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-900 px-3 py-1 rounded-full mb-5">
-      <span class="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 animate-pulse"></span>
-      Open to opportunities
-    </div>
+    <div class="relative">
+      <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
 
-    <p class="font-mono text-sm sm:text-base text-slate-400 dark:text-slate-500 mb-6">
-      AI Agent Developer&nbsp;&nbsp;·&nbsp;&nbsp;AI 智能体工程师
-    </p>
+      <!-- 名字：渐变文字，从深色到靛蓝 -->
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-4
+        bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900
+        dark:from-white dark:via-slate-100 dark:to-indigo-200
+        bg-clip-text text-transparent leading-tight">
+        Nan
+      </h1>
 
-    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base mb-1">
-      热衷于构建以 LangGraph 为核心的 AI 智能体系统，专注于 RAG、多 Agent 架构与 LLM 落地应用。
-    </p>
-    <p class="text-slate-400 dark:text-slate-600 text-xs sm:text-sm mb-8">
-      Building LangGraph-based AI agent systems — RAG, multi-agent architecture, and LLM applications.
-    </p>
+      <!-- 状态标签 -->
+      <div class="inline-flex items-center gap-1.5 text-xs font-mono
+        bg-green-50 dark:bg-green-950/40
+        text-green-700 dark:text-green-400
+        border border-green-200 dark:border-green-900
+        px-3 py-1 rounded-full mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 animate-pulse"></span>
+        Open to opportunities
+      </div>
 
-    <div class="flex flex-wrap gap-3">
-      <a
-        href="https://github.com/77652189"
-        target="_blank"
-        rel="noopener"
-        class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]"
-      >GitHub ↗</a>
-      <a
-        href="mailto:gao.na@northeastern.edu"
-        class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white transition-colors min-h-[44px]"
-      >Email ↗</a>
+      <p class="font-mono text-sm sm:text-base text-slate-400 dark:text-slate-500 mb-5">
+        AI Agent Developer&nbsp;&nbsp;·&nbsp;&nbsp;AI 智能体工程师
+      </p>
+
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base mb-1 max-w-lg">
+        热衷于构建以 LangGraph 为核心的 AI 智能体系统，专注于 RAG、多 Agent 架构与 LLM 落地应用。
+      </p>
+      <p class="text-slate-400 dark:text-slate-600 text-xs sm:text-sm mb-9 max-w-lg">
+        Building LangGraph-based AI agent systems — RAG, multi-agent architecture, and LLM applications.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="https://github.com/77652189" target="_blank" rel="noopener"
+          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]">
+          GitHub ↗
+        </a>
+        <a href="mailto:gao.na@northeastern.edu"
+          class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white transition-colors min-h-[44px]">
+          Email ↗
+        </a>
+      </div>
     </div>
   </section>
 
-  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-12"></div>
+  <!-- 渐变分隔线 -->
+  <div class="h-px mb-10 sm:mb-12 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
 
-  <!-- About -->
+  <!-- ② About -->
   <section class="mb-10 sm:mb-14">
     <div class="flex items-center gap-3 mb-7">
-      <span class="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest">关于</span>
-      <div class="w-10 h-px bg-slate-200 dark:bg-slate-800"></div>
+      <span class="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest">关于 · About</span>
+      <div class="flex-1 h-px bg-gradient-to-r from-slate-200 dark:from-slate-800 to-transparent"></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-5 gap-8 sm:gap-10">
 
-      <!-- 左：Education + Experience 并排 -->
-      <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <!-- 左：Education + Experience -->
+      <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-5">
 
         <div>
           <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Education</p>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
+          <div class="space-y-3">
+            <!-- NEU -->
+            <div class="flex items-start gap-3 p-3 rounded-xl
+              bg-slate-50 dark:bg-slate-800/40
+              border border-slate-100 dark:border-slate-800
+              hover:border-slate-200 dark:hover:border-slate-700
+              transition-colors reveal">
               <img src="/logos/neu.png" alt="NEU"
-                class="w-8 h-8 rounded-md shrink-0 mt-0.5 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
+                class="w-9 h-9 rounded-lg shrink-0 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
               <div>
                 <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Northeastern University</p>
-                <p class="text-xs text-slate-500 dark:text-slate-500">MS · Information Systems</p>
-                <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">GPA 4.0 &nbsp;·&nbsp; Expected 2027</p>
+                <p class="text-xs text-slate-500 mt-0.5">MS · Information Systems</p>
+                <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">GPA 4.0 · Expected 2027</p>
               </div>
             </div>
-            <div class="flex items-start gap-3">
+            <!-- CSU -->
+            <div class="flex items-start gap-3 p-3 rounded-xl
+              bg-slate-50 dark:bg-slate-800/40
+              border border-slate-100 dark:border-slate-800
+              hover:border-slate-200 dark:hover:border-slate-700
+              transition-colors reveal">
               <img src="/logos/csu.png" alt="CSU"
-                class="w-8 h-8 rounded-md shrink-0 mt-0.5 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
+                class="w-9 h-9 rounded-lg shrink-0 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
               <div>
                 <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Central South University</p>
-                <p class="text-xs text-slate-500 dark:text-slate-500">BS · Software Engineering</p>
+                <p class="text-xs text-slate-500 mt-0.5">BS · Software Engineering</p>
                 <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">2023</p>
               </div>
             </div>
@@ -99,12 +137,17 @@ const techStack = [
 
         <div>
           <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Experience</p>
-          <div class="flex items-start gap-3">
+          <!-- Yixi -->
+          <div class="flex items-start gap-3 p-3 rounded-xl
+            bg-slate-50 dark:bg-slate-800/40
+            border border-slate-100 dark:border-slate-800
+            hover:border-slate-200 dark:hover:border-slate-700
+            transition-colors reveal">
             <img src="/logos/yixi.png" alt="Yixi Biotech"
-              class="w-8 h-8 rounded-md shrink-0 mt-0.5 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
+              class="w-9 h-9 rounded-lg shrink-0 object-contain bg-white ring-1 ring-slate-200 dark:ring-slate-700" />
             <div>
               <p class="text-sm font-medium text-slate-900 dark:text-slate-100">AI Agent Intern</p>
-              <p class="text-xs text-slate-500 dark:text-slate-500">Yixi Biotech · Suzhou</p>
+              <p class="text-xs text-slate-500 mt-0.5">Yixi Biotech · Suzhou</p>
               <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5">Apr 2026 – Present</p>
             </div>
           </div>
@@ -112,16 +155,16 @@ const techStack = [
 
       </div>
 
-      <!-- 右：Tech Stack -->
-      <div class="md:col-span-2">
+      <!-- ③ 右：Tech Stack 彩色标签 -->
+      <div class="md:col-span-2 reveal">
         <p class="font-mono text-xs text-slate-400 dark:text-slate-600 uppercase tracking-wider mb-3">Tech Stack</p>
-        <div class="space-y-3">
+        <div class="space-y-4">
           {techStack.map(group => (
             <div>
-              <p class="text-xs text-slate-400 dark:text-slate-600 mb-1.5">{group.label}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-600 mb-2">{group.label}</p>
               <div class="flex flex-wrap gap-1.5">
                 {group.items.map(tech => (
-                  <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded">
+                  <span class={`text-xs font-mono px-2 py-0.5 rounded ${group.tagClass}`}>
                     {tech}
                   </span>
                 ))}
@@ -134,13 +177,14 @@ const techStack = [
     </div>
   </section>
 
-  <div class="border-t border-slate-200 dark:border-slate-800 mb-10 sm:mb-12"></div>
+  <!-- 渐变分隔线 -->
+  <div class="h-px mb-10 sm:mb-12 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
 
   <!-- 精选项目 -->
   <section>
     <div class="flex items-center justify-between mb-5 sm:mb-6">
       <div class="flex items-center gap-3">
-        <span class="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest">精选项目</span>
+        <span class="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-widest">精选项目 · Featured</span>
         <div class="w-10 h-px bg-slate-200 dark:bg-slate-800"></div>
       </div>
       <a href="/projects" class="text-xs font-mono text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
