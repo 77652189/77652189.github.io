@@ -7,12 +7,12 @@ const tiers = [
     nameEn: 'Community',
     price: '免费',
     priceEn: 'Free forever',
-    color: '16,185,129',   // emerald
+    color: '16,185,129',
     badge: '最受欢迎',
-    badgeEn: 'Most Popular',
     cta: '⭐ 获取社区版',
     ctaHref: 'https://github.com/77652189/77652189.github.io',
     ctaTarget: '_blank',
+    easter: false,
     highlight: true,
     features: [
       { text: '零成本接入，无需信用卡', sub: 'No credit card required' },
@@ -28,11 +28,12 @@ const tiers = [
     nameEn: 'Coffee',
     price: '¥20',
     priceEn: 'one-time',
-    color: '245,158,11',   // amber
+    color: '245,158,11',
     badge: null,
     cta: '☕ 请我喝杯咖啡',
-    ctaHref: 'https://ko-fi.com/',   // 替换为你的 Ko-fi 链接
-    ctaTarget: '_blank',
+    ctaHref: '#',
+    ctaTarget: '_self',
+    easter: true,
     highlight: false,
     features: [
       { text: '支持凌晨的灵感调研', sub: 'Fund late-night research' },
@@ -40,18 +41,19 @@ const tiers = [
       { text: '内心的满足感', sub: 'Inner satisfaction included' },
       { text: '包含社区版全部权益', sub: 'Includes Community tier' },
     ],
-    note: 'via Ko-fi',
+    note: '点击看看会发生什么',
   },
   {
     name: '支持者',
     nameEn: 'Supporter',
     price: '随心',
     priceEn: 'pay what you want',
-    color: '99,102,241',   // indigo
+    color: '99,102,241',
     badge: null,
     cta: '🚀 成为支持者',
-    ctaHref: 'https://ko-fi.com/',   // 替换为你的 Ko-fi 链接
-    ctaTarget: '_blank',
+    ctaHref: '#',
+    ctaTarget: '_self',
+    easter: true,
     highlight: false,
     features: [
       { text: '留言板感谢名单', sub: 'Listed in guestbook thanks' },
@@ -59,7 +61,7 @@ const tiers = [
       { text: '随时欢迎聊合作', sub: 'Open to collaboration chat' },
       { text: '包含以上所有权益', sub: 'Includes all tiers' },
     ],
-    note: 'via Ko-fi',
+    note: '点击看看会发生什么',
   },
 ];
 ---
@@ -73,13 +75,12 @@ const tiers = [
       支持我继续构建有趣的 AI 东西。有个免费选项，而且<em>真的</em>有用。
     </p>
     <p class="text-slate-400 dark:text-slate-600 text-xs">
-      Support my work building AI things. There's a free option. It actually helps.
+      Support my work. There's a free option. It actually helps.
     </p>
   </section>
 
   <div class="h-px mb-10 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
 
-  <!-- 定价卡片 -->
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-14">
     {tiers.map(tier => (
       <div class:list={[
@@ -90,21 +91,15 @@ const tiers = [
           : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
       ]}>
 
-        <!-- 渐变封面头 -->
-        <div
-          class="card-cover relative h-24 overflow-hidden shrink-0"
-          style={`--rgb:${tier.color}`}
-        >
+        <div class="card-cover relative h-24 overflow-hidden shrink-0" style={`--rgb:${tier.color}`}>
           <div class="absolute inset-0 opacity-40"
             style={`background-image:radial-gradient(circle at 1px 1px,rgba(${tier.color},0.6) 1px,transparent 0);background-size:16px 16px`}></div>
           <div class="absolute -bottom-6 -right-6 w-20 h-20 rounded-full blur-2xl"
             style={`background:rgba(${tier.color},0.4)`}></div>
-
           <div class="absolute bottom-3 left-4">
             <p class="text-2xl font-bold text-white drop-shadow-sm">{tier.price}</p>
             <p class="text-xs text-white/70 font-mono">{tier.priceEn}</p>
           </div>
-
           {tier.badge && (
             <div class="absolute top-3 right-3 text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30">
               {tier.badge}
@@ -112,16 +107,11 @@ const tiers = [
           )}
         </div>
 
-        <!-- 内容 -->
-        <div class:list={[
-          'flex flex-col flex-1 p-5',
-          'bg-white dark:bg-slate-900'
-        ]}>
+        <div class="flex flex-col flex-1 p-5 bg-white dark:bg-slate-900">
           <div class="mb-4">
             <p class="font-bold text-slate-900 dark:text-slate-100">{tier.name}</p>
             <p class="text-xs font-mono text-slate-400 dark:text-slate-600">{tier.nameEn}</p>
           </div>
-
           <ul class="space-y-2.5 flex-1 mb-6">
             {tier.features.map(f => (
               <li class="flex items-start gap-2">
@@ -133,12 +123,12 @@ const tiers = [
               </li>
             ))}
           </ul>
-
           <div>
             <a
               href={tier.ctaHref}
               target={tier.ctaTarget}
               rel="noopener"
+              data-easter={tier.easter ? 'true' : null}
               class:list={[
                 'block w-full text-center text-sm font-medium py-2.5 rounded-xl transition-all duration-200',
                 tier.highlight
@@ -154,13 +144,108 @@ const tiers = [
     ))}
   </div>
 
-  <!-- 底部小字 -->
   <p class="text-center text-xs text-slate-400 dark:text-slate-600 font-mono">
     所有赞助将用于购买咖啡、续费域名，以及支付 API 调用费用。<br />
     <span class="text-slate-300 dark:text-slate-700">All proceeds fund coffee, domain renewal, and API bills.</span>
   </p>
 
 </Layout>
+
+<!-- 彩蛋：感谢信 Modal -->
+<div id="easter-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+
+  <!-- 背景遮罩 -->
+  <div id="easter-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <!-- 信纸 -->
+  <div id="easter-card"
+    class="relative max-w-md w-full rounded-2xl p-8 shadow-2xl scale-95 transition-transform duration-300
+      bg-amber-50 dark:bg-slate-900
+      border border-amber-200 dark:border-slate-700">
+
+    <!-- 信封折角装饰 -->
+    <div class="absolute top-0 right-0 w-12 h-12 overflow-hidden rounded-tr-2xl">
+      <div class="absolute top-0 right-0 w-0 h-0
+        border-l-[48px] border-l-transparent
+        border-t-[48px] border-t-amber-200 dark:border-t-slate-700"></div>
+    </div>
+
+    <div class="font-serif text-slate-700 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+      <p class="text-slate-400 dark:text-slate-500 text-xs font-mono">— 一封信 / A letter —</p>
+
+      <p>致 <span class="font-medium text-slate-900 dark:text-white">你</span>，</p>
+
+      <p>没想到你真的点进来了。</p>
+
+      <p>
+        谢谢你。真的。<br />
+        不管你是认真看过我项目的人、偶然路过的访客，<br />
+        还是不小心手滑的招聘者——<br />
+        能让你多停留一秒，我已经很开心了。
+      </p>
+
+      <p class="text-slate-500 dark:text-slate-400 text-xs italic">
+        (这个赞助界面其实没有接入任何支付。<br/>
+        你的时间比钱更宝贵。)
+      </p>
+
+      <p>
+        如果你真的觉得这里做得还不错，<br />
+        去 GitHub 点个 Star，或者在留言板说声"你好"。<br />
+        对我来说意义一样重大。
+      </p>
+
+      <p class="pt-2 text-right text-slate-600 dark:text-slate-400">
+        继续构建，继续折腾。<br />
+        <span class="font-medium text-slate-900 dark:text-white">— Nan</span>
+      </p>
+    </div>
+
+    <div class="mt-6 flex gap-3">
+      <a href="https://github.com/77652189/77652189.github.io" target="_blank" rel="noopener"
+        class="flex-1 text-center text-xs font-mono py-2 rounded-lg
+          bg-slate-900 dark:bg-white text-white dark:text-slate-900
+          hover:opacity-80 transition-opacity">
+        ⭐ 去 Star
+      </a>
+      <a href="/guestbook"
+        class="flex-1 text-center text-xs font-mono py-2 rounded-lg
+          border border-slate-300 dark:border-slate-700
+          text-slate-600 dark:text-slate-400
+          hover:border-slate-400 dark:hover:border-slate-600 transition-colors">
+        💬 去留言
+      </a>
+      <button id="easter-close"
+        class="px-3 text-xs font-mono text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+        关闭
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const modal = document.getElementById('easter-modal');
+  const card  = document.getElementById('easter-card');
+
+  function openModal() {
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    requestAnimationFrame(() => card.classList.remove('scale-95'));
+  }
+
+  function closeModal() {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    card.classList.add('scale-95');
+  }
+
+  document.querySelectorAll('[data-easter="true"]').forEach(btn => {
+    btn.addEventListener('click', e => { e.preventDefault(); openModal(); });
+  });
+
+  document.getElementById('easter-close').addEventListener('click', closeModal);
+  document.getElementById('easter-backdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 
 <style>
   .card-cover {
