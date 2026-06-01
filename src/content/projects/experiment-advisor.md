@@ -8,7 +8,7 @@ tags: [Python, Bayesian, Optimization, Biology]
 github: https://github.com/77652189/ExperimentAdvisor
 stars: 0
 date: 2026-05-28
-featured: true
+featured: false
 ---
 
 生物实验参数空间复杂，随机试验效率低。ExperimentAdvisor 利用贝叶斯优化算法，基于已有实验数据推荐下一步最具信息量的实验方案，最小化实验次数的同时最大化信息增益。
