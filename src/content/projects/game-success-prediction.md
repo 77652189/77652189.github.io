@@ -9,6 +9,7 @@ github: https://github.com/77652189/GameSuccessPrediction
 stars: 0
 date: 2025-11-01
 featured: true
+color: blue
 ---
 
 构建机器学习模型，对 1,189 款 Steam 游戏的 20+ 项特征进行分析，预测独立游戏市场成功率，准确率达 **97.9%**。

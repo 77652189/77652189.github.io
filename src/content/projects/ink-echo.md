@@ -8,6 +8,7 @@ github: https://github.com/77652189/InkEcho
 stars: 0
 date: 2026-03-16
 featured: false
+color: rose
 ---
 
 InkEcho 探索将经典文学故事移植到不同时代、地域、文化背景下的可能性——用 AI 重新讲述你熟悉的故事。

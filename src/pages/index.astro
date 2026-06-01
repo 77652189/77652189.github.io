@@ -18,7 +18,10 @@ const techStack = [
 <Layout title="Nan — AI Agent Developer">
 
   <!-- Hero -->
-  <section class="pt-10 sm:pt-16 pb-8 sm:pb-10 mb-4">
+  <section class="pt-10 sm:pt-16 pb-8 sm:pb-10 mb-4 relative">
+    <!-- 背景光晕 -->
+    <div class="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-20 dark:opacity-10 pointer-events-none"
+      style="background:radial-gradient(circle,rgb(99,102,241),transparent 70%)"></div>
     <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
 
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-slate-900 dark:text-white">
@@ -156,6 +159,8 @@ const techStack = [
           stars={project.data.stars}
           slug={project.slug}
           date={project.data.date}
+          color={project.data.color}
+          language={project.data.language}
         />
       ))}
     </div>

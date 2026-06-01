@@ -144,5 +144,48 @@ const ogImage = 'https://77652189.github.io/og-image.png';
       });
     </script>
 
+    <!-- 滚动淡入动效 -->
+    <script is:inline>
+      (function () {
+        // 尊重用户减少动效偏好
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (entry.isIntersecting) {
+                // 同批次元素依次错开 80ms
+                const siblings = entry.target.parentElement?.querySelectorAll('.reveal') ?? [];
+                const idx = Array.from(siblings).indexOf(entry.target);
+                entry.target.style.transitionDelay = `${Math.min(idx * 80, 320)}ms`;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+
+        const observe = () =>
+          document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 初始 + 路由切换后重新绑定
+        observe();
+        document.addEventListener('astro:page-load', observe);
+      })();
+    </script>
+
+    <style is:global>
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+
   </body>
 </html>

@@ -9,6 +9,7 @@ github: https://github.com/77652189/MySchool
 stars: 0
 date: 2025-10-01
 featured: false
+color: amber
 ---
 
 基于 Spring Boot、Spring Data JPA 和 MySQL 开发的课程管理平台，涵盖课程管理、学员报名、训练师排班及宠物档案等核心功能。

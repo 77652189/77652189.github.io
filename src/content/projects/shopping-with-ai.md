@@ -9,6 +9,7 @@ github: https://github.com/77652189/ShoppingWithAI
 stars: 1
 date: 2026-03-01
 featured: true
+color: violet
 ---
 
 基于 LangGraph 构建的多节点 Agent，实现购物意图路由与 RAG 检索问答，提供端到端 Web UI 演示。

@@ -13,6 +13,7 @@ const projects = defineCollection({
     stars: z.number().default(0),
     date: z.date(),
     featured: z.boolean().default(false),
+    color: z.string().default('indigo'),
   }),
 });
 

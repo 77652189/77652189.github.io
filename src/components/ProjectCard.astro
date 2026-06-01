@@ -8,55 +8,100 @@ interface Props {
   stars: number;
   slug: string;
   date: Date;
+  color?: string;
+  language?: string;
 }
 
-const { title, titleZh, description, descriptionZh, tags, stars, slug, date } = Astro.props;
+const { title, titleZh, description, descriptionZh, tags, stars, slug, date, color = 'indigo', language } = Astro.props;
+
+// 颜色映射：每种颜色对应 hex，用于生成渐变
+const palette: Record<string, string> = {
+  indigo:  '99,102,241',
+  violet:  '139,92,246',
+  blue:    '59,130,246',
+  emerald: '16,185,129',
+  amber:   '245,158,11',
+  rose:    '244,63,94',
+  cyan:    '6,182,212',
+};
+const rgb = palette[color] ?? palette.indigo;
 
 const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 ---
 
-<a href={`/projects/${slug}`} class="block group min-h-[44px]">
-  <div class="h-full flex flex-col bg-white dark:bg-slate-900
-    border border-slate-200 dark:border-slate-800
-    rounded-xl p-5 sm:p-6
-    hover:border-indigo-300 dark:hover:border-slate-600
-    hover:-translate-y-0.5
-    hover:shadow-lg hover:shadow-slate-200/80 dark:hover:shadow-black/40
-    transition-all duration-200 ease-out">
-
-    <!-- Header -->
-    <div class="flex items-start justify-between mb-2 sm:mb-3">
-      <div class="flex-1 min-w-0 pr-2">
-        <h3 class="font-mono font-medium text-sm sm:text-base text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
-          {title}
-        </h3>
-        <p class="text-xs text-slate-400 dark:text-slate-600 mt-0.5 truncate">{titleZh}</p>
-      </div>
+<a href={`/projects/${slug}`} class="block group reveal">
+  <article
+    class="h-full flex flex-col bg-white dark:bg-slate-900
+      border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden
+      hover:border-slate-300 dark:hover:border-slate-600
+      hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/50
+      transition-all duration-300 ease-out"
+  >
+    <!-- 渐变封面头 -->
+    <div
+      class="card-cover relative h-28 overflow-hidden shrink-0"
+      style={`--rgb:${rgb}`}
+    >
+      <!-- 点阵纹理 -->
+      <div
+        class="absolute inset-0 opacity-50"
+        style={`background-image:radial-gradient(circle at 1px 1px,rgba(${rgb},0.5) 1px,transparent 0);background-size:18px 18px`}
+      ></div>
+      <!-- 右下角光晕 -->
+      <div
+        class="absolute -bottom-4 -right-4 w-24 h-24 rounded-full blur-2xl"
+        style={`background:rgba(${rgb},0.3)`}
+      ></div>
+      <!-- 语言 badge -->
+      {language && (
+        <span
+          class="absolute bottom-3 left-4 text-xs font-mono px-2 py-0.5 rounded backdrop-blur-sm border"
+          style={`color:rgba(${rgb},0.9);background:rgba(${rgb},0.1);border-color:rgba(${rgb},0.3)`}
+        >{language}</span>
+      )}
+      <!-- 星标 -->
       {stars > 0 && (
-        <span class="text-xs text-amber-500 dark:text-amber-400 flex items-center gap-0.5 shrink-0 font-mono">
+        <span class="absolute top-3 right-3 text-xs font-mono text-amber-500 dark:text-amber-400">
           ★ {stars}
         </span>
       )}
     </div>
 
-    <!-- Description -->
-    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 flex-1">{descriptionZh}</p>
-    <p class="text-xs text-slate-400 dark:text-slate-600 leading-relaxed mt-0.5 line-clamp-1">{description}</p>
+    <!-- 内容区 -->
+    <div class="flex flex-col flex-1 p-5">
+      <h3
+        class="font-mono font-medium text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate mb-0.5"
+        style={`--accent:rgb(${rgb})`}
+      >{title}</h3>
+      <p class="text-xs text-slate-400 dark:text-slate-600 truncate mb-3">{titleZh}</p>
 
-    <!-- Footer: tags + date -->
-    <div class="flex items-end justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-      <div class="flex flex-wrap gap-1.5">
-        {tags.slice(0, 3).map(tag => (
-          <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700/60 px-2 py-0.5 rounded">
-            {tag}
-          </span>
-        ))}
-        {tags.length > 3 && (
-          <span class="text-xs font-mono text-slate-400 dark:text-slate-600 self-center">+{tags.length - 3}</span>
-        )}
+      <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 flex-1">{descriptionZh}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-600 leading-relaxed mt-0.5 line-clamp-1">{description}</p>
+
+      <!-- 底部：标签 + 日期 -->
+      <div class="flex items-end justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+        <div class="flex flex-wrap gap-1.5">
+          {tags.slice(0, 3).map(tag => (
+            <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700/60 px-2 py-0.5 rounded">
+              {tag}
+            </span>
+          ))}
+          {tags.length > 3 && (
+            <span class="text-xs font-mono text-slate-400 dark:text-slate-600 self-center">+{tags.length - 3}</span>
+          )}
+        </div>
+        <span class="text-xs font-mono text-slate-300 dark:text-slate-700 shrink-0 ml-2">{dateStr}</span>
       </div>
-      <span class="text-xs font-mono text-slate-300 dark:text-slate-700 shrink-0 ml-2">{dateStr}</span>
     </div>
-
-  </div>
+  </article>
 </a>
+
+<style>
+  /* 渐变封面：明/暗双模式通过 CSS 变量 */
+  .card-cover {
+    background: linear-gradient(135deg, rgba(var(--rgb), 0.15) 0%, rgba(var(--rgb), 0.03) 100%);
+  }
+  :global(.dark) .card-cover {
+    background: linear-gradient(135deg, rgba(var(--rgb), 0.2) 0%, rgba(var(--rgb), 0.04) 100%);
+  }
+</style>

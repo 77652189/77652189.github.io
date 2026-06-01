@@ -36,6 +36,8 @@ const allTags = [...new Set(allProjects.flatMap(p => p.data.tags))].sort();
         stars={project.data.stars}
         slug={project.slug}
         date={project.data.date}
+        color={project.data.color}
+        language={project.data.language}
       />
     ))}
   </div>
