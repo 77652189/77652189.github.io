@@ -8,38 +8,129 @@ const sorted = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.va
 const allTags = [...new Set(allProjects.flatMap(p => p.data.tags))].sort();
 ---
 
-<Layout title="所有项目 — 77652189">
+<Layout title="所有项目 — 知行合一">
 
-  <div class="mb-10">
-    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-2">All Projects</p>
-    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">所有项目</h1>
-    <p class="font-mono text-xs text-slate-400 dark:text-slate-600 mt-1">{allProjects.length} projects</p>
+  <div class="pt-10 sm:pt-14 pb-8">
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-4">Projects</p>
+    <div class="flex items-end justify-between">
+      <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">所有项目</h1>
+      <span id="project-count" class="font-mono text-xs text-slate-400 dark:text-slate-600 mb-1">{allProjects.length} projects</span>
+    </div>
   </div>
 
-  <div class="flex flex-wrap gap-2 mb-8">
+  <div class="h-px mb-8 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
+
+  <!-- 标签过滤 -->
+  <div class="flex flex-wrap gap-2 mb-8" id="tag-filters">
+    <button data-filter="all" class="tag-btn is-active text-xs font-mono px-3 py-1 rounded-full border transition-colors">
+      全部&thinsp;<span class="opacity-50">{allProjects.length}</span>
+    </button>
     {allTags.map(tag => (
-      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 px-3 py-1 rounded-full">
+      <button data-filter={tag} class="tag-btn text-xs font-mono px-3 py-1 rounded-full border transition-colors">
         {tag}
-      </span>
+      </button>
     ))}
   </div>
 
-  <!-- 两列网格 -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <!-- 项目网格 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="projects-grid">
     {sorted.map(project => (
-      <ProjectCard
-        title={project.data.title}
-        titleZh={project.data.titleZh}
-        description={project.data.description}
-        descriptionZh={project.data.descriptionZh}
-        tags={project.data.tags}
-        stars={project.data.stars}
-        slug={project.slug}
-        date={project.data.date}
-        color={project.data.color}
-        language={project.data.language}
-      />
+      <div class="project-item" data-tags={project.data.tags.join(',')}>
+        <ProjectCard
+          title={project.data.title}
+          titleZh={project.data.titleZh}
+          description={project.data.description}
+          descriptionZh={project.data.descriptionZh}
+          tags={project.data.tags}
+          stars={project.data.stars}
+          slug={project.slug}
+          date={project.data.date}
+          color={project.data.color}
+          language={project.data.language}
+        />
+      </div>
     ))}
   </div>
 
 </Layout>
+
+<style>
+  /* 每个 project-item 撑满格子高度，保持卡片等高 */
+  .project-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .project-item > a {
+    flex: 1;
+  }
+  .project-item.is-hidden {
+    display: none;
+  }
+
+  /* 标签按钮默认状态 */
+  .tag-btn {
+    background: rgb(241 245 249);
+    border-color: rgb(226 232 240);
+    color: rgb(100 116 139);
+  }
+  :global(.dark) .tag-btn {
+    background: rgb(15 23 42);
+    border-color: rgb(30 41 59);
+    color: rgb(100 116 139);
+  }
+  .tag-btn:hover {
+    border-color: rgb(165 180 252);
+    color: rgb(79 70 229);
+  }
+  :global(.dark) .tag-btn:hover {
+    border-color: rgba(55, 48, 163, 0.6);
+    color: rgb(129 140 248);
+  }
+
+  /* 激活状态 */
+  .tag-btn.is-active {
+    background: rgb(238 242 255);
+    border-color: rgb(165 180 252);
+    color: rgb(79 70 229);
+  }
+  :global(.dark) .tag-btn.is-active {
+    background: rgba(49, 46, 129, 0.3);
+    border-color: rgba(55, 48, 163, 0.7);
+    color: rgb(129 140 248);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const btns = document.querySelectorAll('.tag-btn');
+    const items = document.querySelectorAll('.project-item');
+    const countEl = document.getElementById('project-count');
+    const total = items.length;
+
+    function updateCount(visible) {
+      if (!countEl) return;
+      countEl.textContent = visible === total
+        ? total + ' projects'
+        : visible + ' / ' + total + ' projects';
+    }
+
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.dataset.filter;
+
+        btns.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+
+        var visible = 0;
+        items.forEach(function (item) {
+          var tags = (item.dataset.tags || '').split(',');
+          var show = filter === 'all' || tags.indexOf(filter) !== -1;
+          item.classList.toggle('is-hidden', !show);
+          if (show) visible++;
+        });
+
+        updateCount(visible);
+      });
+    });
+  })();
+</script>
