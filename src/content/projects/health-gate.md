@@ -13,6 +13,8 @@ featured: false
 color: violet
 ---
 
+🌐 **[在线体验 → healthgate-one.vercel.app](https://healthgate-one.vercel.app)**
+
 healthGate 是一个健康测评 Funnel 全栈项目，重点展示分步持久化、服务端健康评估、订阅鉴权、模拟支付闭环和完整自动化测试。
 
 ## 核心功能
