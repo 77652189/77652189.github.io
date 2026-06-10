@@ -10,9 +10,10 @@ interface Props {
   date: Date;
   color?: string;
   language?: string;
+  demo?: string;
 }
 
-const { title, titleZh, description, descriptionZh, tags, stars, slug, date, color = 'indigo', language } = Astro.props;
+const { title, titleZh, description, descriptionZh, tags, stars, slug, date, color = 'indigo', language, demo } = Astro.props;
 
 // 颜色映射：每种颜色对应 hex，用于生成渐变
 const palette: Record<string, string> = {
@@ -58,6 +59,13 @@ const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'shor
           class="absolute bottom-3 left-4 text-xs font-mono px-2 py-0.5 rounded backdrop-blur-sm border"
           style={`color:rgba(${rgb},0.9);background:rgba(${rgb},0.1);border-color:rgba(${rgb},0.3)`}
         >{language}</span>
+      )}
+      <!-- Live 徽章 -->
+      {demo && (
+        <span class="absolute top-3 left-4 text-xs font-mono px-2 py-0.5 rounded-full
+          bg-emerald-500/20 border border-emerald-500/30 text-emerald-400">
+          ● Live
+        </span>
       )}
       <!-- 星标 -->
       {stars > 0 && (

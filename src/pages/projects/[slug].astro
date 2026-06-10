@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, titleZh, description, descriptionZh, tags, github, stars, date, language } = project.data;
+const { title, titleZh, description, descriptionZh, tags, github, stars, date, language, demo } = project.data;
 
 const dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
@@ -63,6 +63,14 @@ const dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long
           rel="noopener"
           class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]"
         >在 GitHub 查看 ↗</a>
+        {demo && (
+          <a
+            href={demo}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-emerald-400 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors min-h-[44px]"
+          >Live Demo ↗</a>
+        )}
         <span class="text-xs font-mono text-slate-400 dark:text-slate-700">{dateStr}</span>
       </div>
     </header>

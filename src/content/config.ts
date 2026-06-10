@@ -14,6 +14,7 @@ const projects = defineCollection({
     date: z.date(),
     featured: z.boolean().default(false),
     color: z.string().default('indigo'),
+    demo: z.string().url().optional(),
   }),
 });
 
