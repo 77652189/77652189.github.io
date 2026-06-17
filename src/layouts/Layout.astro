@@ -90,6 +90,13 @@ const ogImage = 'https://77652189.github.io/og-image.png';
           >项目<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Projects</span></a>
 
           <a
+            href="/contributions"
+            class:list={['transition-colors hidden sm:inline', currentPath === '/contributions'
+              ? 'text-slate-900 dark:text-white font-medium'
+              : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
+          >贡献<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">OSS</span></a>
+
+          <a
             href="/Nan_Resume.pdf"
             target="_blank"
             rel="noopener"

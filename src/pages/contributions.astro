@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const typeMeta: Record<string, { label: string; bg: string; text: string; darkBg: string; darkText: string }> = {
+  feat:     { label: 'feat',     bg: 'bg-indigo-100',  text: 'text-indigo-700',  darkBg: 'dark:bg-indigo-950/60', darkText: 'dark:text-indigo-400' },
+  fix:      { label: 'fix',      bg: 'bg-emerald-100', text: 'text-emerald-700', darkBg: 'dark:bg-emerald-950/60', darkText: 'dark:text-emerald-400' },
+  refactor: { label: 'refactor', bg: 'bg-amber-100',   text: 'text-amber-700',   darkBg: 'dark:bg-amber-950/60',  darkText: 'dark:text-amber-400' },
+  test:     { label: 'test',     bg: 'bg-blue-100',    text: 'text-blue-700',    darkBg: 'dark:bg-blue-950/60',   darkText: 'dark:text-blue-400' },
+  ci:       { label: 'ci',       bg: 'bg-slate-100',   text: 'text-slate-600',   darkBg: 'dark:bg-slate-800',     darkText: 'dark:text-slate-400' },
+};
+
+const contributions = [
+  {
+    repo: 'melandlabs/openloomi',
+    repoUrl: 'https://github.com/melandlabs/openloomi',
+    descZh: '开源 AI 记忆系统 — 主动记录工作细节的 AI 伴侣',
+    descEn: 'Open-source proactive AI that remembers all work details',
+    stars: 360,
+    language: 'TypeScript',
+    color: '99,102,241',
+    note: '连续参与内存模块（memory）的核心特性开发，涵盖证据聚类、记忆整合、遗忘周期等关键能力',
+    prs: [
+      { type: 'feat',     title: 'add relation pipeline prototype',          url: 'https://github.com/melandlabs/openloomi/pull/196', date: '2026-06-16' },
+      { type: 'ci',       title: 'add RPM release artifacts',                url: 'https://github.com/melandlabs/openloomi/pull/192', date: '2026-06-16' },
+      { type: 'feat',     title: 'add relation graph assignment helper',     url: 'https://github.com/melandlabs/openloomi/pull/189', date: '2026-06-16' },
+      { type: 'feat',     title: 'add consolidation plan helper',            url: 'https://github.com/melandlabs/openloomi/pull/188', date: '2026-06-16' },
+      { type: 'refactor', title: 'move consolidation helpers into package',  url: 'https://github.com/melandlabs/openloomi/pull/187', date: '2026-06-16' },
+      { type: 'feat',     title: 'add evidence cluster diagnostics',         url: 'https://github.com/melandlabs/openloomi/pull/185', date: '2026-06-16' },
+      { type: 'feat',     title: 'add evidence cluster scoring helper',      url: 'https://github.com/melandlabs/openloomi/pull/184', date: '2026-06-16' },
+      { type: 'test',     title: 'add consolidation eval metrics',           url: 'https://github.com/melandlabs/openloomi/pull/183', date: '2026-06-16' },
+      { type: 'test',     title: 'add consolidation evaluation scenarios',   url: 'https://github.com/melandlabs/openloomi/pull/181', date: '2026-06-15' },
+      { type: 'test',     title: 'cover pinned records in forgetting cycle', url: 'https://github.com/melandlabs/openloomi/pull/164', date: '2026-06-11' },
+    ],
+  },
+  {
+    repo: 'i-am-bee/beeai-framework',
+    repoUrl: 'https://github.com/i-am-bee/beeai-framework',
+    descZh: '生产级 AI Agent 构建框架，支持 Python 与 TypeScript',
+    descEn: 'Build production-ready AI agents in Python and TypeScript',
+    stars: 3297,
+    language: 'Python',
+    color: '245,158,11',
+    note: null,
+    prs: [
+      { type: 'fix', title: 'clean up LLMTool prompt template', url: 'https://github.com/i-am-bee/beeai-framework/pull/1483', date: '2026-06-16' },
+    ],
+  },
+  {
+    repo: 'amd/gaia',
+    repoUrl: 'https://github.com/amd/gaia',
+    descZh: 'AMD 出品的本地 AI Agent 构建工具链',
+    descEn: 'Build AI agents for your PC',
+    stars: 1432,
+    language: 'Python',
+    color: '16,185,129',
+    note: null,
+    prs: [
+      { type: 'fix', title: 'show file search scope in webui', url: 'https://github.com/amd/gaia/pull/1587', date: '2026-06-11' },
+    ],
+  },
+];
+
+const totalPRs   = contributions.reduce((s, r) => s + r.prs.length, 0);
+const totalStars = contributions.reduce((s, r) => s + r.stars, 0);
+const totalRepos = contributions.length;
+
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+}
+---
+
+<Layout title="开源贡献 — 知行合一" description="Nan 的开源贡献记录 — merged PR 一览">
+
+  <!-- Header -->
+  <section class="pt-10 sm:pt-14 pb-8">
+    <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-4">Open Source</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">开源贡献</h1>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mb-1">
+      参与过的开源项目，以及合并到主干的 Pull Request 记录。
+    </p>
+    <p class="text-slate-400 dark:text-slate-600 text-xs">
+      Open source contributions — merged pull requests and patches.
+    </p>
+  </section>
+
+  <div class="h-px mb-8 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-3 gap-4 mb-10 reveal">
+    {[
+      { value: totalPRs,   label: 'Merged PRs',    labelZh: '已合并 PR' },
+      { value: totalRepos, label: 'Repositories',  labelZh: '贡献仓库' },
+      { value: (totalStars / 1000).toFixed(1) + 'k', label: 'Combined Stars', labelZh: '仓库星标合计' },
+    ].map(stat => (
+      <div class="text-center p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+        <p class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">{stat.value}</p>
+        <p class="text-xs text-slate-500 dark:text-slate-500 mt-1">{stat.labelZh}</p>
+        <p class="text-xs text-slate-300 dark:text-slate-700">{stat.label}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Repos -->
+  <div class="space-y-8">
+    {contributions.map((repo, ri) => (
+      <div class="reveal">
+        <!-- Repo Header -->
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <a
+                href={repo.repoUrl}
+                target="_blank"
+                rel="noopener"
+                class="font-mono font-medium text-slate-900 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >{repo.repo} ↗</a>
+              <span class="text-xs font-mono text-amber-500 dark:text-amber-400">★ {repo.stars.toLocaleString()}</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700">
+                {repo.language}
+              </span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded-full"
+                style={`background:rgba(${repo.color},0.12);color:rgba(${repo.color},0.9);border:1px solid rgba(${repo.color},0.25)`}
+              >{repo.prs.length} PRs merged</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-500 mt-1">{repo.descZh}</p>
+            <p class="text-xs text-slate-300 dark:text-slate-700">{repo.descEn}</p>
+          </div>
+        </div>
+
+        {repo.note && (
+          <p class="text-xs text-slate-400 dark:text-slate-600 font-mono mb-3 pl-2 border-l-2"
+            style={`border-color:rgba(${repo.color},0.4)`}
+          >{repo.note}</p>
+        )}
+
+        <!-- PR List -->
+        <div class="rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden">
+          {repo.prs.map((pr, i) => {
+            const m = typeMeta[pr.type] ?? typeMeta.feat;
+            return (
+              <a
+                href={pr.url}
+                target="_blank"
+                rel="noopener"
+                class:list={[
+                  'flex items-center gap-3 px-4 py-3 group transition-colors',
+                  'hover:bg-slate-50 dark:hover:bg-slate-800/60',
+                  i < repo.prs.length - 1 ? 'border-b border-slate-100 dark:border-slate-800' : ''
+                ]}
+              >
+                <span class:list={[
+                  'shrink-0 text-xs font-mono font-medium px-2 py-0.5 rounded w-16 text-center',
+                  m.bg, m.text, m.darkBg, m.darkText,
+                ]}>{m.label}</span>
+
+                <span class="flex-1 text-sm text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate font-mono">
+                  {pr.title}
+                </span>
+
+                <span class="shrink-0 text-xs font-mono text-slate-300 dark:text-slate-700">{formatDate(pr.date)}</span>
+
+                <svg class="shrink-0 w-3.5 h-3.5 text-slate-300 dark:text-slate-700 group-hover:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-12 text-center text-xs font-mono text-slate-300 dark:text-slate-700">
+    仅展示已合并 (merged) 的 Pull Request · Only merged PRs are listed
+  </p>
+
+</Layout>
