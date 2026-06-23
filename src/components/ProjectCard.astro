@@ -30,13 +30,12 @@ const rgb = palette[color] ?? palette.indigo;
 const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 ---
 
-<a href={`/projects/${slug}`} class="block group reveal">
+<a href={`/projects/${slug}`} class="block group reveal tilt-card" style={`--rgb:${rgb}`}>
   <article
     class="h-full flex flex-col bg-white dark:bg-slate-900
       border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden
       hover:border-slate-300 dark:hover:border-slate-600
-      hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/50
-      transition-all duration-300 ease-out"
+      transition-all duration-200 ease-out"
   >
     <!-- 渐变封面头 -->
     <div
@@ -111,5 +110,18 @@ const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'shor
   }
   :global(.dark) .card-cover {
     background: linear-gradient(135deg, rgba(var(--rgb), 0.2) 0%, rgba(var(--rgb), 0.04) 100%);
+  }
+
+  /* 3D 倾斜：过渡由 JS 控制，hover 时加彩色投影 */
+  .tilt-card {
+    transition: filter 0.25s ease;
+    will-change: transform;
+  }
+  .tilt-card:hover {
+    filter: drop-shadow(0 14px 24px rgba(var(--rgb), 0.18));
+  }
+  :global(.dark) .tilt-card:hover {
+    filter: drop-shadow(0 14px 24px rgba(var(--rgb), 0.28))
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   }
 </style>

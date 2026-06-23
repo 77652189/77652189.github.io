@@ -32,9 +32,9 @@ const techStack = [
   <!-- ① Hero -->
   <section class="pt-10 sm:pt-16 pb-10 sm:pb-14 mb-2 relative overflow-hidden">
     <!-- 双色光晕背景 -->
-    <div class="absolute -top-16 -left-16 w-80 h-80 rounded-full blur-3xl opacity-25 dark:opacity-15 pointer-events-none"
+    <div class="absolute -top-16 -left-16 w-80 h-80 rounded-full blur-3xl opacity-25 dark:opacity-15 pointer-events-none glow-orb-a"
       style="background:radial-gradient(circle,rgb(99,102,241),transparent 70%)"></div>
-    <div class="absolute top-0 left-48 w-48 h-48 rounded-full blur-3xl opacity-10 dark:opacity-8 pointer-events-none"
+    <div class="absolute top-0 left-48 w-48 h-48 rounded-full blur-3xl opacity-10 dark:opacity-8 pointer-events-none glow-orb-b"
       style="background:radial-gradient(circle,rgb(139,92,246),transparent 70%)"></div>
 
     <!-- 极淡点阵 -->
@@ -45,9 +45,7 @@ const techStack = [
       <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
 
       <!-- 名字：渐变文字，从深色到靛蓝 -->
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-4
-        bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900
-        dark:from-white dark:via-slate-100 dark:to-indigo-200
+      <h1 class="hero-name text-5xl sm:text-6xl font-bold tracking-tight mb-4
         bg-clip-text text-transparent leading-tight">
         Nan
       </h1>
@@ -212,3 +210,43 @@ const techStack = [
   </section>
 
 </Layout>
+
+<style>
+  /* 名字渐变流动 */
+  .hero-name {
+    background-image: linear-gradient(135deg, #0f172a, #312e81, #4f46e5, #7c3aed, #312e81, #0f172a);
+    background-size: 300% 300%;
+  }
+  :global(.dark) .hero-name {
+    background-image: linear-gradient(135deg, #ffffff, #e0e7ff, #a5b4fc, #ddd6fe, #e0e7ff, #ffffff);
+    background-size: 300% 300%;
+  }
+
+  /* 光晕浮动 */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-name {
+      animation: name-flow 9s ease infinite;
+    }
+    .glow-orb-a {
+      animation: float-a 13s ease-in-out infinite;
+    }
+    .glow-orb-b {
+      animation: float-b 9s ease-in-out infinite;
+    }
+  }
+
+  @keyframes name-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+  @keyframes float-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40%       { transform: translate(20px, -16px) scale(1.06); }
+    70%       { transform: translate(-12px, 10px) scale(0.96); }
+  }
+  @keyframes float-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    35%       { transform: translate(-16px, 14px) scale(1.1); }
+    65%       { transform: translate(12px, -10px) scale(0.93); }
+  }
+</style>
