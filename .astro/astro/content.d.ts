@@ -155,6 +155,13 @@ declare module 'astro:content' {
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
+"health-gate.md": {
+	id: "health-gate.md";
+  slug: "health-gate";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "ink-echo.md": {
 	id: "ink-echo.md";
   slug: "ink-echo";
@@ -169,6 +176,27 @@ declare module 'astro:content' {
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
+"p-promopt.md": {
+	id: "p-promopt.md";
+  slug: "p-promopt";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"pc-sec-yeast-species.md": {
+	id: "pc-sec-yeast-species.md";
+  slug: "pc-sec-yeast-species";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"pichia-clm-torch.md": {
+	id: "pichia-clm-torch.md";
+  slug: "pichia-clm-torch";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "shopping-with-ai.md": {
 	id: "shopping-with-ai.md";
   slug: "shopping-with-ai";
@@ -176,9 +204,23 @@ declare module 'astro:content' {
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
+"sigscout.md": {
+	id: "sigscout.md";
+  slug: "sigscout";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "sort-paper.md": {
 	id: "sort-paper.md";
   slug: "sort-paper";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"yeasts-models.md": {
+	id: "yeasts-models.md";
+  slug: "yeasts-models";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">

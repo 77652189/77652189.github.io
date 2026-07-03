@@ -84,14 +84,14 @@ const ogImage = 'https://77652189.github.io/og-image.png';
 
           <a
             href="/projects"
-            class:list={['transition-colors', currentPath.startsWith('/projects')
+            class:list={['hidden sm:inline transition-colors', currentPath.startsWith('/projects')
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >项目<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Projects</span></a>
 
           <a
             href="/contributions"
-            class:list={['transition-colors hidden sm:inline', currentPath === '/contributions'
+            class:list={['hidden sm:inline transition-colors', currentPath === '/contributions'
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >贡献<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">OSS</span></a>
@@ -100,19 +100,19 @@ const ogImage = 'https://77652189.github.io/og-image.png';
             href="/Nan_Resume.pdf"
             target="_blank"
             rel="noopener"
-            class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            class="hidden sm:inline text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
           >简历<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Resume</span></a>
 
           <a
             href="/guestbook"
-            class:list={['transition-colors', currentPath === '/guestbook'
+            class:list={['hidden sm:inline transition-colors', currentPath === '/guestbook'
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >留言<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Guestbook</span></a>
 
           <a
             href="/sponsor"
-            class:list={['transition-colors hidden sm:inline', currentPath === '/sponsor'
+            class:list={['hidden sm:inline transition-colors', currentPath === '/sponsor'
               ? 'text-slate-900 dark:text-white font-medium'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white']}
           >赞助<span class="hidden lg:inline text-slate-300 dark:text-slate-700"> · </span><span class="hidden lg:inline">Sponsor</span></a>
@@ -121,7 +121,7 @@ const ogImage = 'https://77652189.github.io/og-image.png';
             href="https://github.com/77652189"
             target="_blank"
             rel="noopener"
-            class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            class="hidden sm:inline text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
           >GitHub ↗</a>
 
           <button
@@ -136,6 +136,49 @@ const ogImage = 'https://77652189.github.io/og-image.png';
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </button>
+
+          <!-- 汉堡菜单：仅移动端显示 -->
+          <button
+            id="mobile-menu-toggle"
+            aria-label="打开菜单"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="sm:hidden flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <svg id="icon-menu-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="icon-menu-close" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 移动端下拉菜单 -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col">
+          <a href="/" class:list={['flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60', currentPath === '/' ? 'text-slate-900 dark:text-white font-medium' : 'text-slate-500 dark:text-slate-400']}>
+            首页<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">Home</span>
+          </a>
+          <a href="/projects" class:list={['flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60', currentPath.startsWith('/projects') ? 'text-slate-900 dark:text-white font-medium' : 'text-slate-500 dark:text-slate-400']}>
+            项目<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">Projects</span>
+          </a>
+          <a href="/contributions" class:list={['flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60', currentPath === '/contributions' ? 'text-slate-900 dark:text-white font-medium' : 'text-slate-500 dark:text-slate-400']}>
+            贡献<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">OSS</span>
+          </a>
+          <a href="/Nan_Resume.pdf" target="_blank" rel="noopener" class="flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60 text-slate-500 dark:text-slate-400">
+            简历<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">Resume</span>
+          </a>
+          <a href="/guestbook" class:list={['flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60', currentPath === '/guestbook' ? 'text-slate-900 dark:text-white font-medium' : 'text-slate-500 dark:text-slate-400']}>
+            留言<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">Guestbook</span>
+          </a>
+          <a href="/sponsor" class:list={['flex items-center min-h-[44px] text-sm border-b border-slate-100 dark:border-slate-800/60', currentPath === '/sponsor' ? 'text-slate-900 dark:text-white font-medium' : 'text-slate-500 dark:text-slate-400']}>
+            赞助<span class="ml-1.5 text-xs font-mono text-slate-300 dark:text-slate-700">Sponsor</span>
+          </a>
+          <a href="https://github.com/77652189" target="_blank" rel="noopener" class="flex items-center min-h-[44px] text-sm text-slate-500 dark:text-slate-400">
+            GitHub ↗
+          </a>
         </div>
       </div>
     </nav>
@@ -164,6 +207,45 @@ const ogImage = 'https://77652189.github.io/og-image.png';
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
+    </script>
+
+    <!-- 移动端汉堡菜单 -->
+    <script is:inline>
+      (function () {
+        const btn = document.getElementById('mobile-menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-menu-open');
+        const iconClose = document.getElementById('icon-menu-close');
+        if (!btn || !menu) return;
+
+        function closeMenu() {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+          iconOpen?.classList.remove('hidden');
+          iconClose?.classList.add('hidden');
+        }
+        function openMenu() {
+          menu.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+          iconOpen?.classList.add('hidden');
+          iconClose?.classList.remove('hidden');
+        }
+
+        btn.addEventListener('click', function () {
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          if (isOpen) closeMenu(); else openMenu();
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+        // 横屏/放大到桌面宽度时自动收起
+        const desktopQuery = window.matchMedia('(min-width: 640px)');
+        desktopQuery.addEventListener('change', function (e) {
+          if (e.matches) closeMenu();
+        });
+      })();
     </script>
 
     <!-- 滚动淡入动效 -->
