@@ -1,10 +1,10 @@
 ---
 title: pcSecYeastSpecies
 titleZh: 酵母分泌通路跨物种参数分析
-description: MATLAB-based comparative analysis of secretory pathway parameters across yeast species
-descriptionZh: 基于 MATLAB 对多物种酵母的分泌通路关键参数进行建模与比较分析
-language: MATLAB
-tags: [MATLAB, Bioinformatics, Systems Biology, Secretory Pathway]
+description: Comparative analysis of secretory pathway parameters across yeast species
+descriptionZh: 多物种酵母分泌通路关键参数的比较建模与分析
+language: Python
+tags: [Python, Bioinformatics, Systems Biology, Secretory Pathway]
 github: https://github.com/77652189/pcSecYeastSpecies
 stars: 0
 date: 2026-06-03
@@ -18,7 +18,7 @@ color: amber
 
 - 跨物种分泌通路关键节点的参数对比
 - 蛋白折叠与分泌效率的主要影响因素量化
-- MATLAB 可视化报告，支持参数扫描与敏感性分析
+- Python 可视化报告，支持参数扫描与敏感性分析
 
 ## 应用背景
 
@@ -26,4 +26,4 @@ color: amber
 
 ## Tech Stack
 
-MATLAB · Systems Biology Toolbox
+Python · Systems Biology · pandas
