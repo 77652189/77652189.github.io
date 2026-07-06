@@ -61,14 +61,14 @@ const dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long
           href={github}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]"
+          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-[0.98] transition min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
         >在 GitHub 查看 ↗</a>
         {demo && (
           <a
             href={demo}
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center gap-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg font-medium transition-colors min-h-[44px]"
+            class="inline-flex items-center gap-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg font-medium active:scale-[0.98] transition min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
           >在线体验 · Live Demo ↗</a>
         )}
         <span class="text-xs font-mono text-slate-400 dark:text-slate-700">{dateStr}</span>

@@ -11,9 +11,11 @@ interface Props {
   color?: string;
   language?: string;
   demo?: string;
+  size?: 'md' | 'lg';
+  class?: string;
 }
 
-const { title, titleZh, description, descriptionZh, tags, stars, slug, date, color = 'indigo', language, demo } = Astro.props;
+const { title, titleZh, description, descriptionZh, tags, stars, slug, date, color = 'indigo', language, demo, size = 'md', class: className } = Astro.props;
 
 // 颜色映射：每种颜色对应 hex，用于生成渐变
 const palette: Record<string, string> = {
@@ -30,7 +32,7 @@ const rgb = palette[color] ?? palette.indigo;
 const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 ---
 
-<a href={`/projects/${slug}`} class="block group reveal tilt-card" style={`--rgb:${rgb}`}>
+<a href={`/projects/${slug}`} class:list={['block group reveal tilt-card', className]} style={`--rgb:${rgb}`}>
   <article
     class="h-full flex flex-col bg-white dark:bg-slate-900
       border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden
@@ -39,7 +41,7 @@ const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'shor
   >
     <!-- 渐变封面头 -->
     <div
-      class="card-cover relative h-28 overflow-hidden shrink-0"
+      class:list={['card-cover relative overflow-hidden shrink-0', size === 'lg' ? 'h-40 sm:h-48' : 'h-28']}
       style={`--rgb:${rgb}`}
     >
       <!-- 点阵纹理 -->
@@ -75,14 +77,14 @@ const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'shor
     </div>
 
     <!-- 内容区 -->
-    <div class="flex flex-col flex-1 p-5">
+    <div class:list={['flex flex-col flex-1 p-5', size === 'lg' && 'sm:p-6']}>
       <h3
-        class="font-mono font-medium text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate mb-0.5"
+        class:list={['font-mono font-medium text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate mb-0.5', size === 'lg' && 'sm:text-lg']}
         style={`--accent:rgb(${rgb})`}
       >{title}</h3>
       <p class="text-xs text-slate-400 dark:text-slate-600 truncate mb-3">{titleZh}</p>
 
-      <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 flex-1">{descriptionZh}</p>
+      <p class:list={['text-sm text-slate-600 dark:text-slate-400 leading-relaxed flex-1', size === 'lg' ? 'sm:line-clamp-4 line-clamp-2' : 'line-clamp-2']}>{descriptionZh}</p>
       <p class="text-xs text-slate-400 dark:text-slate-600 leading-relaxed mt-0.5 line-clamp-1">{description}</p>
 
       <!-- 底部：标签 + 日期 -->

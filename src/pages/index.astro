@@ -31,15 +31,17 @@ const techStack = [
 
   <!-- ① Hero -->
   <section class="pt-10 sm:pt-16 pb-10 sm:pb-14 mb-2 relative overflow-hidden">
-    <!-- 双色光晕背景 -->
-    <div class="absolute -top-16 -left-16 w-80 h-80 rounded-full blur-3xl opacity-25 dark:opacity-15 pointer-events-none glow-orb-a"
+    <!-- 单色光晕：非对称定位，避免"AI 渲染感"的双色模糊光斑 -->
+    <div class="absolute -top-20 -right-24 w-96 h-96 rounded-full blur-3xl opacity-20 dark:opacity-15 pointer-events-none glow-orb-a"
       style="background:radial-gradient(circle,rgb(99,102,241),transparent 70%)"></div>
-    <div class="absolute top-0 left-48 w-48 h-48 rounded-full blur-3xl opacity-10 dark:opacity-8 pointer-events-none glow-orb-b"
-      style="background:radial-gradient(circle,rgb(139,92,246),transparent 70%)"></div>
 
     <!-- 极淡点阵 -->
     <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
       style="background-image:radial-gradient(circle at 1px 1px,rgb(99,102,241) 1px,transparent 0);background-size:28px 28px"></div>
+
+    <!-- 颗粒纹理：打破纯色渐变的"数字扁平感" -->
+    <div class="absolute inset-0 opacity-[0.4] dark:opacity-[0.5] pointer-events-none mix-blend-overlay"
+      style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
 
     <div class="relative">
       <p class="font-mono text-xs text-indigo-500 dark:text-indigo-400 tracking-widest uppercase mb-5">Portfolio</p>
@@ -73,11 +75,11 @@ const techStack = [
 
       <div class="flex flex-wrap gap-3">
         <a href="https://github.com/77652189" target="_blank" rel="noopener"
-          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors min-h-[44px]">
+          class="inline-flex items-center gap-2 text-sm bg-slate-900 dark:bg-white text-white dark:text-slate-950 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-100 active:scale-[0.98] transition min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950">
           GitHub ↗
         </a>
         <a href="mailto:gao.na@northeastern.edu"
-          class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white transition-colors min-h-[44px]">
+          class="inline-flex items-center gap-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-lg hover:border-indigo-400 dark:hover:border-slate-500 hover:text-indigo-600 dark:hover:text-white active:scale-[0.98] transition min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950">
           Email ↗
         </a>
       </div>
@@ -190,8 +192,8 @@ const techStack = [
       </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-      {featured.map(project => (
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4">
+      {featured.map((project, i) => (
         <ProjectCard
           title={project.data.title}
           titleZh={project.data.titleZh}
@@ -204,6 +206,8 @@ const techStack = [
           color={project.data.color}
           language={project.data.language}
           demo={project.data.demo}
+          size={i === 0 ? 'lg' : 'md'}
+          class={i === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}
         />
       ))}
     </div>
@@ -212,13 +216,13 @@ const techStack = [
 </Layout>
 
 <style>
-  /* 名字渐变流动 */
+  /* 名字渐变流动：单一色系（slate → indigo），避免跨色系的"AI 渐变"感 */
   .hero-name {
-    background-image: linear-gradient(135deg, #0f172a, #312e81, #4f46e5, #7c3aed, #312e81, #0f172a);
+    background-image: linear-gradient(135deg, #0f172a, #1e1b4b, #4338ca, #4f46e5, #1e1b4b, #0f172a);
     background-size: 300% 300%;
   }
   :global(.dark) .hero-name {
-    background-image: linear-gradient(135deg, #ffffff, #e0e7ff, #a5b4fc, #ddd6fe, #e0e7ff, #ffffff);
+    background-image: linear-gradient(135deg, #ffffff, #e0e7ff, #818cf8, #a5b4fc, #e0e7ff, #ffffff);
     background-size: 300% 300%;
   }
 
@@ -230,9 +234,6 @@ const techStack = [
     .glow-orb-a {
       animation: float-a 13s ease-in-out infinite;
     }
-    .glow-orb-b {
-      animation: float-b 9s ease-in-out infinite;
-    }
   }
 
   @keyframes name-flow {
@@ -241,12 +242,7 @@ const techStack = [
   }
   @keyframes float-a {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    40%       { transform: translate(20px, -16px) scale(1.06); }
-    70%       { transform: translate(-12px, 10px) scale(0.96); }
-  }
-  @keyframes float-b {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    35%       { transform: translate(-16px, 14px) scale(1.1); }
-    65%       { transform: translate(12px, -10px) scale(0.93); }
+    40%       { transform: translate(-18px, 14px) scale(1.06); }
+    70%       { transform: translate(10px, -10px) scale(0.96); }
   }
 </style>
