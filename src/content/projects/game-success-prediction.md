@@ -1,8 +1,8 @@
 ---
 title: GameSuccessPrediction
 titleZh: Steam 独立游戏成功预测模型
-description: ML model predicting indie game success with 97.9% accuracy — and a paradox
-descriptionZh: 分析 1,189 款 Steam 游戏，预测准确率 97.9%，发现"Twitch 悖论"
+description: Modeling 20+ features across 1,189 Steam titles — and the "Twitch paradox" it turned up
+descriptionZh: 对 1,189 款 Steam 游戏的 20+ 项特征端到端建模，并由此发现"Twitch 悖论"
 language: Python
 tags: [Python, XGBoost, scikit-learn, Data Science, ML]
 github: https://github.com/77652189/GameSuccessPrediction
@@ -12,7 +12,9 @@ featured: true
 color: blue
 ---
 
-构建机器学习模型，对 1,189 款 Steam 游戏的 20+ 项特征进行分析，预测独立游戏市场成功率，准确率达 **97.9%**。
+构建机器学习模型，对 1,189 款 Steam 游戏的 20+ 项特征进行分析，预测独立游戏的市场表现。
+
+这里**不报准确率**：「成功」是下面那条由我们自己划定的阈值，一个漂亮的准确率数字经不起「成功怎么定义、基线是多少」的追问。真正站得住的产出是下面那条反直觉的相关性。
 
 指导教授：Pramod Gupta
 
